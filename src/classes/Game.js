@@ -1,15 +1,10 @@
+import Player from './Player.js';
+import GameMap from './GameMap.js';
+
 export default class Game {
-    constructor() {
-        this.player = null;
-        this.map = null;
-        this.currentScene = null;
-        this.gameLoop = null;
-    }
-
-}
-
-class Game {
-    constructor() {
+    constructor(canvas, ctx) {
+        this.canvas = canvas;
+        this.ctx = ctx;
         this.player = null;
         this.map = null;
         this.currentScene = null;
@@ -63,7 +58,14 @@ class Game {
     }
 
     render() {
-        // Lógica de renderização aqui
+        // Limpar o canvas
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Renderizar mapa
+        this.map.render(this.ctx);
+        
+        // Renderizar player
+        this.player.render(this.ctx);
     }
 
     checkCollisions() {
@@ -78,5 +80,6 @@ class Game {
 
     startBattle() {
         // Iniciar batalha Pokémon
+        console.log("Batalha iniciada!");
     }
 }
